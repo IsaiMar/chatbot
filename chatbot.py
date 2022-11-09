@@ -2,10 +2,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
-my_bot = ChatBot(name='Chatbot', read_only=True,
-                logic_adapters=
-['chatterbot.logic.MathematicalEvaluation',
-                                'chatterbot.logic.BestMatch'])
+my_bot = ChatBot('Chatbot')
 
 list_trainer = ListTrainer(my_bot)
 small_talk = ['hi there',
@@ -35,3 +32,15 @@ for item in (small_talk, math_talk_1, math_talk_2, math_talk_3):
 
 corpus_trainer = ChatterBotCorpusTrainer(my_bot)
 corpus_trainer.train('chatterbot.corpus.english')
+
+
+def conversation():
+        while True:
+                user_input = input("Talk to me")
+                if (user_input == "QUIT"):
+                        break;
+                else:
+                        response = my_bot.get_response(user_input)
+                        print(f"{response}")
+
+conversation()
